@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Splash from './splashScreen';
-
+import LogIn from './logInComponent';
 const rootStack = createStackNavigator();
 
 
@@ -10,7 +10,7 @@ const rootStack = createStackNavigator();
 export default function Main() {
   return (
     <NavigationContainer>
-      <rootStack.Navigator initialRouteName="Home"
+      <rootStack.Navigator initialRouteName="Splash"
         screenOptions={{
           style: {
             textAlign: 'center'
@@ -26,13 +26,19 @@ export default function Main() {
           },
         }}
       >
-        <rootStack.Screen name="Home" component={Home}
+        <rootStack.Screen name="Splash" component={Splash}
           options={{
-            title: 'Getting Start',
-            headerTitleStyle: {
-              alignSelf: 'center',
-            },
+            headerShown: false
+            // title: 'Getting Start',
+            // headerTitleStyle: {
+            //   alignSelf: 'center',
+            // },
           }} />
+        <rootStack.Screen name="LogIn" component={LogIn}
+          options={{
+            headerShown: false
+          }}
+           />
         {/* <rootStack.Screen name="LogIn" component={LogIn}
           options={{ title: 'Login Now' }} />
         <rootStack.Screen name="SignUp" component={SignUp}

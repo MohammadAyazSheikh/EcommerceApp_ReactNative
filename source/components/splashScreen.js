@@ -1,31 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { widthToDp, heightToDp } from '../../utils/responsiveUtils';
 
 
-export default function Splash() {
-    return (
-        <View style={styles.container}>
-            <View style={styles.txtView}>
-                <Text style={styles.txt}>Find Your</Text>
-                <Text style={styles.txt}>Gadget</Text>
-            </View>
+export default class Splash extends Component {
+    render() {
 
-            <View style={styles.imgView}>
-                <Image style={styles.img}
-                    source={require('../../assets/images/Saly-19.png')}
-                />
-            </View>
-            <View style={styles.btnView}>
-                <TouchableOpacity style={styles.btn}>
-                    <Text style={styles.txtBtn}>
-                        Getting Start
+
+        return (
+            <View style={styles.container}>
+                <View style={styles.txtView}>
+                    <Text style={styles.txt}>Find Your</Text>
+                    <Text style={styles.txt}>Gadget</Text>
+                </View>
+
+                <View style={styles.imgView}>
+                    <Image style={styles.img}
+                        source={require('../../assets/images/Saly-19.png')}
+                    />
+                    <Image style={styles.shadowBox}
+                        source={require('../../assets/images/rect.png')}
+                    />
+                </View>
+                <View style={styles.btnView}>
+                    <TouchableOpacity style={styles.btn}
+                        onPress={this.props.navigation.navigate('LogIn')}
+                    >
+                        <Text style={styles.txtBtn}>
+                            Getting Start
                     </Text>
-                </TouchableOpacity>
-            </View>
+                    </TouchableOpacity>
+                </View>
 
-        </View>
-    );
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -42,7 +51,7 @@ const styles = StyleSheet.create({
         //alignItems: 'flex-start',
         justifyContent: 'center',
         //height: heightToDp('20%'),
-        flex:1.5,
+        flex: 1.5,
         //backgroundColor: 'red',
         //marginRight:widthToDp('15%')
     },
@@ -52,23 +61,33 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'left',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: {width: 1, height: 1},
+        textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 5,
     },
     imgView: {
         //backgroundColor: 'green',
         //height: heightToDp('55%'),
-        flex:2
+        flex: 2
     },
     img: {
         width: widthToDp('70%'), //90
-        height: widthToDp('60%') //80
+        height: widthToDp('60%'), //80
+
+    },
+    shadowBox: {
+        //  backgroundColor: 'red',
+        position: 'absolute',
+        width: widthToDp('50%'),
+        //height: widthToDp('10%'), 
+        top: widthToDp('47%'),
+        left: widthToDp('10%'),
+        // opacity:
     },
     btnView: {
         //height: heightToDp('25%'),
-        flex:1,
+        flex: 1,
         //backgroundColor:'grey',
-        justifyContent:'center'
+        justifyContent: 'center'
     },
     btn: {
         width: widthToDp('70%'),
@@ -77,12 +96,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
-        elevation:10
+        elevation: 10
     },
-    txtBtn:{
-        color:'#5956e9',
-        fontSize:widthToDp('5%'),
-        fontWeight:'bold'
+    txtBtn: {
+        color: '#5956e9',
+        fontSize: widthToDp('5%'),
+        fontWeight: 'bold'
     }
 
 });
