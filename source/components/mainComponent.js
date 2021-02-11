@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Splash from './splashScreen';
 import LogIn from './logInComponent';
+import root_Tab from '../routes/rootTab'
 const rootStack = createStackNavigator();
 
 
@@ -38,7 +39,12 @@ export default function Main() {
           options={{
             headerShown: false
           }}
-           />
+        />
+        <rootStack.Screen name="rootTab" component={root_Tab}
+          options={{
+            headerShown: false
+          }}
+        />
         {/* <rootStack.Screen name="LogIn" component={LogIn}
           options={{ title: 'Login Now' }} />
         <rootStack.Screen name="SignUp" component={SignUp}

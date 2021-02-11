@@ -74,7 +74,9 @@ export default class LogIn extends Component {
                     <TouchableOpacity style={styles.forgetPassBtn}>
                         <Text style={styles.forgetPassTxt}>Forget Password?</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.loginBtn}>
+                    <TouchableOpacity style={styles.loginBtn}
+                        onPress={() => this.props.navigation.navigate('rootTab')}
+                    >
                         <Text style={styles.loginBtnTxt}>Login</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.createBtn}>
@@ -177,7 +179,8 @@ const styles = StyleSheet.create({
         padding: 5,
         paddingLeft: 0,
         borderBottomWidth: 0.5,
-        borderColor: 'grey'
+        borderColor: 'grey',
+        fontSize: widthToDp('3.5%')
     },
     showHideBtn: {
         position: 'absolute',
@@ -191,26 +194,26 @@ const styles = StyleSheet.create({
         color: '#5956e9',
         fontSize: widthToDp('3.5%'),
     },
-    loginBtn:{
-        alignSelf:'center',
+    loginBtn: {
+        alignSelf: 'center',
         backgroundColor: '#5956e9',
-        width:widthToDp('80'),
-        height:widthToDp('15'),
-        borderRadius:10,
-        marginTop:heightToDp(6),
-        alignItems:'center',
-        justifyContent:'center'
+        width: widthToDp('80'),
+        height: widthToDp('15'),
+        borderRadius: 10,
+        marginTop: heightToDp(6),
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    loginBtnTxt:{
-        color:'white',
-        fontWeight:'bold',
-        fontSize:widthToDp(5),
+    loginBtnTxt: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: widthToDp(5),
     },
-    createBtn:{
-        alignSelf:'center',
-        marginTop:heightToDp(1)
+    createBtn: {
+        alignSelf: 'center',
+        marginTop: heightToDp(1)
     },
-    createBtnTxt:{
+    createBtnTxt: {
         color: '#5956e9',
         fontSize: widthToDp('4%'),
     }

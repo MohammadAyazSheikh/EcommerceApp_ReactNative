@@ -4,9 +4,10 @@ import { widthToDp, heightToDp } from '../../utils/responsiveUtils';
 
 
 export default class Splash extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
-
-
         return (
             <View style={styles.container}>
                 <View style={styles.txtView}>
@@ -24,7 +25,7 @@ export default class Splash extends Component {
                 </View>
                 <View style={styles.btnView}>
                     <TouchableOpacity style={styles.btn}
-                        onPress={this.props.navigation.navigate('LogIn')}
+                       onPress={() => this.props.navigation.navigate('LogIn')}
                     >
                         <Text style={styles.txtBtn}>
                             Getting Start
