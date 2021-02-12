@@ -11,17 +11,21 @@ const homeTopTab = createMaterialTopTabNavigator();
 
 
 
-export default function Home_Top_Tab() {
+export default function Home_Top_Tab(props) {
     return (
         <>
             <View style={styles.container} >
                 <View style={styles.txtInputView}>
-                    <Icon name="search1" color='grey' size={26} style = {styles.icnonStyle} />
-                    <TextInput placeholder='search' style={styles.txtInput} />
+                    <Icon name="search1" color='grey' size={26} style={styles.icnonStyle} />
+                    <TextInput placeholder='search' style={styles.txtInput}
+                        onTouchStart={
+                            () => props.navigation.navigate('Search')
+                        }
+                    />
                 </View>
                 <View style={styles.txtView}>
-                    <Text style = {styles.txtHeader}>Order online</Text>
-                    <Text style = {styles.txtHeader}>Collect in store</Text>
+                    <Text style={styles.txtHeader}>Order online</Text>
+                    <Text style={styles.txtHeader}>Collect in store</Text>
                 </View>
 
             </View>
@@ -83,20 +87,20 @@ const styles = StyleSheet.create({
         paddingLeft: widthToDp(11.5),
         paddingRight: widthToDp(2)
     },
-    icnonStyle:{
-        position:'absolute',
-        bottom:heightToDp(2.5),
-        left:widthToDp(18)
+    icnonStyle: {
+        position: 'absolute',
+        bottom: heightToDp(2.5),
+        left: widthToDp(18)
     },
     txtView: {
         flex: 1.75,
-        justifyContent:'center',
-        paddingLeft:widthToDp(15)
+        justifyContent: 'center',
+        paddingLeft: widthToDp(15)
     },
-   txtHeader:{
-     fontSize:widthToDp(7),
-     fontWeight:'bold'
-   }
+    txtHeader: {
+        fontSize: widthToDp(7),
+        fontWeight: 'bold'
+    }
 
 });
 
