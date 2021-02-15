@@ -3,9 +3,10 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { widthToDp, heightToDp } from '../../utils/responsiveUtils';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-// import {Icon} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Home from '../components/homeComponent';
+import Favorite from '../components/favoriteComponent';
+import Profile from '../components/profileComponent';
 import Home_Top_Tab from './homeTopTab';
 
 
@@ -32,14 +33,11 @@ export default function root_Tab() {
             />
 
             <rootTab.Screen
-                name="Home2" component={Home}
+                name="Favorite" component={Favorite}
                 options={{
                     tabBarLabel: null,
-                    tabBarBadge: 3,
-
                     tabBarIcon: ({ color }) => (
-
-                        <Icon name="hearto" color={color} size={26} />
+                        <Icon name="hearto" color={color} size={24} />
                     ),
                 }}
             />
@@ -48,8 +46,7 @@ export default function root_Tab() {
                 name="Home3" component={Home}
                 options={{
                     tabBarLabel: null,
-                    // tabBarBadge: 3 ,
-
+                    tabBarBadge: 3 ,
                     tabBarIcon: ({ color }) => (
 
                         <Icon name="shoppingcart" color={color} size={26} />
@@ -58,7 +55,7 @@ export default function root_Tab() {
             />
 
             <rootTab.Screen
-                name="Home4" component={Home}
+                name="Profile" component={Profile}
                 options={{
                     tabBarLabel: null,
                     // tabBarBadge: 3 ,

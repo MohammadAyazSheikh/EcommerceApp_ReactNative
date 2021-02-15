@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { widthToDp, heightToDp } from '../../utils/responsiveUtils';
+import {
+    watch1,
+    watch2,
+    watch3,
+    watch4,
+    watch5
+} from '../images'
 
-
-function RenderFucntion() {
+export function RenderProduct(props) {
+    let Width = props.width ? props.width : widthToDp(40);
+    let imgRadius = props.imageRadius ? props.imageRadius : 100;
     return (
-        <View style = {styles.container}>
-        <View style={styles.prodView}>
-            <Image style={styles.img}
-                source={require('../../assets/images/watch1.png')} />
-            <Text style={styles.txtProdName}>Apple Watch</Text>
-            <Text style={styles.txtProdDesc}>Series 6 . Red</Text>
-            <Text style={styles.txtProdPrice}>$ 359</Text>
-        </View>
+        <View style={styles.container}>
+            <View style={{ ...styles.prodView, width: Width }}>
+                <Image style={{ ...styles.img, borderRadius:imgRadius }}
+                    source={props.img} />
+                <Text style={styles.txtProdName}>{props.name}</Text>
+                <Text style={styles.txtProdDesc}>{props.desc}</Text>
+                <Text style={styles.txtProdPrice}>$ {props.price}</Text>
+            </View>
         </View>
     );
 }
 
 export default class Home extends Component {
     render() {
-
-
         return (
-            <ScrollView  horizontal = {true}> 
-                    <RenderFucntion />
-                    <RenderFucntion />
-                    <RenderFucntion />
-                    <RenderFucntion />
-                    <RenderFucntion />
+            <ScrollView horizontal={true}>
+                <RenderProduct name='Apple Watch' desc='Series 6 . Red' price={359} img={watch1} />
+                <RenderProduct name='Apple Watch' desc='Series 2 . Black' price={431} img={watch2} />
+                <RenderProduct name='Huwaie Watch' desc='Series 4 . Grey' price={431} img={watch3} />
+                <RenderProduct name='Samsung Watch' desc='Series 11 . Pink' price={431} img={watch4} />
+                <RenderProduct name='Oppo Watch' desc='Series 2 . Black' price={431} img={watch5} />
             </ScrollView>
         );
     }
@@ -40,9 +46,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#f2f2f2',
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft:widthToDp(4),
-        marginRight:widthToDp(4),
-        marginBottom:widthToDp(10)
+        marginLeft: widthToDp(4),
+        marginRight: widthToDp(4),
+        marginBottom: widthToDp(10)
     },
     prodView: {
         backgroundColor: 'white',
@@ -55,6 +61,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     img: {
+        backgroundColor: '#fadfe0',
         borderRadius: 100,
         width: widthToDp(33),
         height: widthToDp(33),

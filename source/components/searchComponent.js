@@ -1,15 +1,54 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { widthToDp, heightToDp } from '../../utils/responsiveUtils';
+
+import { products } from '../../utils/product';
+import {
+    watch1,
+    watch2,
+    watch3,
+    watch4,
+    watch5
+} from '../images'
 
 
 
 
 export default class Search extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            productSearch: '',
+            productCount: 0,
+            flag: false,
+            prod: null
+        }
+    }
+
+
+    renderProduct = ({ item }) => {
+        let pName = item.name.replace(/\s+/g, '').toLocaleLowerCase();
+        if (pName.includes(this.state.productSearch) && this.state.productSearch) {
+
+            return (
+                <RenderProduct name={item.name}
+                    desc={item.desc}
+                    price={431} img={item.image}
+                    width={widthToDp(80)}
+                    imageRadius={25}
+                />
+
+            )
+        }
+        else {
+            return (<View></View>)
+        }
+    }
+   
+
     render() {
-
-
+      
         return (
             <View style={styles.container} >
                 <View style={styles.headerView}>
@@ -19,16 +58,23 @@ export default class Search extends Component {
                     </TouchableOpacity>
                     <View style={styles.txtInputView}>
                         <Icon name="search1" color='grey' size={26} style={styles.SerachIconStyle} />
-                        <TextInput placeholder='search' style={styles.txtInput} />
+                        <TextInput placeholder='search' style={styles.txtInput}
+                            onChangeText={(value) => {
+                                let str = value.replace(/\s+/g, '').toLocaleLowerCase();
+                                this.setState({ productSearch: str });
+                            }}
+                        />
                     </View>
-
-
                 </View>
-                <View style={styles.txtResulView} >
-                    <Text style={styles.txtResult} >Found 6 result</Text>
-                </View>
+                {/* <View style={styles.txtResulView} >
+                    <Text style={styles.txtResult} >Found {this.state.productCount} result</Text>
+                </View> */}
                 <View style={styles.resultView}>
-
+                        <FlatList
+                            data={products}
+                            renderItem={this.renderProduct}
+                            keyExtractor={item => item.id.toString()}
+                        />
                 </View>
 
             </View>
@@ -92,7 +138,14 @@ const styles = StyleSheet.create({
     },
     resultView: {
         flex: 3,
-        // backgroundColor: 'grey'
+    },
+    resultSrcollView: {
+        flex: 1,
+        // flexDirection: 'row',
+        // flexWrap:'wrap'
+    },
+    resultItemView: {
+        // flex:1
     }
 });
 
