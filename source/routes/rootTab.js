@@ -7,7 +7,9 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Home from '../components/homeComponent';
 import Favorite from '../components/favoriteComponent';
 import Profile from '../components/profileComponent';
+import Basket from '../components/basketComponent';
 import Home_Top_Tab from './homeTopTab';
+
 
 
 const rootTab = createMaterialBottomTabNavigator();
@@ -23,15 +25,12 @@ export default function root_Tab() {
                 name="Home" component={Home_Top_Tab}
                 options={{
                     tabBarLabel: null,
-                    // tabBarBadge: 3 ,
-
                     tabBarIcon: ({ color }) => (
 
                         <Icon name="home" color={color} size={26} />
                     ),
                 }}
             />
-
             <rootTab.Screen
                 name="Favorite" component={Favorite}
                 options={{
@@ -41,27 +40,21 @@ export default function root_Tab() {
                     ),
                 }}
             />
-
             <rootTab.Screen
-                name="Home3" component={Home}
+                name="Basket" component={Basket}
                 options={{
                     tabBarLabel: null,
                     tabBarBadge: 3 ,
                     tabBarIcon: ({ color }) => (
-
                         <Icon name="shoppingcart" color={color} size={26} />
                     ),
                 }}
             />
-
             <rootTab.Screen
                 name="Profile" component={Profile}
                 options={{
                     tabBarLabel: null,
-                    // tabBarBadge: 3 ,
-
                     tabBarIcon: ({ color }) => (
-
                         <Icon name="user" color={color} size={26} />
                     ),
                 }}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { widthToDp, heightToDp } from '../../utils/responsiveUtils';
-
+import {RenderProduct} from '../components/homeComponent'
 import { products } from '../../utils/product';
 import {
     watch1,
