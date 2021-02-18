@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Animated } from 'react-native';
 import { widthToDp, heightToDp } from '../../utils/responsiveUtils';
 
 
@@ -12,10 +12,35 @@ export default class LogIn extends Component {
 
         }
         this.toggleShowPass = this.toggleShowPass.bind(this);
+        this.popUpIcon = new Animated.ValueXY({ x: 1, y: 1 });
     }
 
     toggleShowPass() {
         this.setState({ showPass: !this.state.showPass })
+
+        Animated.sequence([
+            Animated.sequence([
+                Animated.spring(
+                    this.popUpIcon,
+                    {
+                        toValue: { x: 1.3, y: 1.3 },
+                        stiffness: 200,
+                        useNativeDriver: true,
+                        duration: 100
+                    }
+
+                ),
+                Animated.spring(
+                    this.popUpIcon,
+                    {
+                        toValue: { x: 1, y: 1 },
+                        // stiffness: 300,
+                        useNativeDriver: true,
+                        duration: 100
+                    }
+                )
+            ])
+        ]).start();
     }
 
 
@@ -62,9 +87,20 @@ export default class LogIn extends Component {
                             >
                                 {
                                     this.state.showPass ?
-                                        <Image style={styles.lblImgIcon}
-                                            source={require('../../assets/icons/Hide.png')} /> :
-                                        <Image style={styles.lblImgIcon}
+                                        <Animated.Image style={{
+                                            ...styles.lblImgIcon, transform: [
+                                                { scaleX: this.popUpIcon.x },
+                                                { scaleY: this.popUpIcon.y }
+                                            ]
+                                        }}
+                                            source={require('../../assets/icons/Hide.png')} />
+                                        :
+                                        <Animated.Image style={{
+                                            ...styles.lblImgIcon, transform: [
+                                                { scaleX: this.popUpIcon.x },
+                                                { scaleY: this.popUpIcon.y }
+                                            ]
+                                        }}
                                             source={require('../../assets/icons/Show.png')} />
                                 }
                             </TouchableOpacity>
