@@ -35,8 +35,8 @@ export default class Search extends Component {
                 <RenderProduct name={item.name}
                     desc={item.desc}
                     price={431} img={item.image}
-                    width={widthToDp(80)}
-                    imageRadius={25}
+                    width={widthToDp(45)}
+                    // imageRadius={25}
                 />
 
             )
@@ -74,6 +74,8 @@ export default class Search extends Component {
                             data={products}
                             renderItem={this.renderProduct}
                             keyExtractor={item => item.id.toString()}
+                            numColumns = {2}
+                            
                         />
                 </View>
 
