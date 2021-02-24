@@ -5,6 +5,28 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import root_Tab from '../routes/rootTab';
 const { width, height } = Dimensions.get('screen');
 
+
+/*
+
+w = 2
+0,2,4,6,8
+
+ iteration 1
+i = 0, w = 0
+
+prev   cur   next
+i-1*w, i*w, i+1*w,  
+ -2  ,  0   ,   2 --> input
+
+ (0.8,  1.4 ,   0.8) -> ouput
+
+ iteration 2
+i = 1, w = 2 
+
+i-1*w, i*w, i+1*w, 
+ 0  ,  2   ,   4 
+
+*/
 // https://www.flaticon.com/packs/retro-wave
 // inspiration: https://dribbble.com/shots/11164698-Onboarding-screens-animation
 // https://twitter.com/mironcatalin/status/1321180191935373312
@@ -52,6 +74,7 @@ const Indicator = ({ scrollX }) => {
         DATA.map((_, i) => {
 
           const inputRange = [(i - 1) * width, i * width, (i + 1) * width]
+
           const scale = scrollX.interpolate({
             inputRange,
             outputRange: [0.8, 1.4, 0.8],

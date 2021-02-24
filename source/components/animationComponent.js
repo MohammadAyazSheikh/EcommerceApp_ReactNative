@@ -8,7 +8,24 @@ export default class Animate extends React.Component {
     constructor(props) {
         super(props);
         this.position = new Animated.ValueXY({ x: 1, y: 1 });
-        // this.fadeAnim = new Animated.Value(0);
+        this.fadeAnim = new Animated.Value(1);
+
+        this.intpScale = this.fadeAnim.interpolate({
+            inputRange: [0.1, 0.5, 1],
+            outputRange: [1, 2, 1],
+        });
+
+        this.intpRotate = this.fadeAnim.interpolate({
+            inputRange: [1,50],
+            outputRange: ['0deg', '360deg'],
+            // extrapolate:'clamp'
+        });
+
+        this.intpMove = this.fadeAnim.interpolate({
+            inputRange: [1,110],
+            outputRange: [1, 100],
+            // extrapolate:'clamp'
+        });
 
     }
 
@@ -17,9 +34,6 @@ export default class Animate extends React.Component {
 
     render() {
 
-
-
-
         return (
             <View style={styles.container} >
                 <Animated.View
@@ -27,38 +41,27 @@ export default class Animate extends React.Component {
                         width: 30,
                         height: 30,
                         backgroundColor: 'red',
-                        // opacity:  this.fadeAnim
                         transform: [
-                            { scaleX: this.position.x },
-                            { scaleY: this.position.y },
-                            // { skewX: toString( this.position.x )},
-
+                            // { scaleX: this.intpScale },
+                            // { scaleY: this.position.y },
+                            { rotate: this.intpRotate },
+                            { translateY: this.intpMove },
                         ]
                     }}
                 >
                 </Animated.View>
                 <TouchableOpacity onPress={() => {
-                    Animated.spring(
-                        this.position,
+                    Animated.timing(
+                        this.fadeAnim,
                         {
-                            toValue: { x: 5, y: 5 },
-                            stiffness: 300,
+                            // toValue: { x: 5, y: 5 },
+                            toValue: 360,
+                            // stiffness: 300,
                             useNativeDriver: true,
-                            // stiffness:200
+                            duration: 5000
                         }
                     ).start();
 
-
-
-
-                    // Animated.timing(
-                    //     this.fadeAnim,
-                    //     {
-                    //         toValue: 1,
-                    //         duration: 10000,
-                    //         useNativeDriver: true
-                    //     }
-                    // ).start();
 
                 }}>
                     <Text>Touch Me</Text>
@@ -70,8 +73,7 @@ export default class Animate extends React.Component {
                             Animated.spring(
                                 this.position,
                                 {
-                                    toValue: { x: 4, y: 4 },
-                                    // stiffness: 300,
+                                    toValue: { x: 3, y: 3 },
                                     useNativeDriver: true,
                                     // stiffness:200.
                                     duration: 200
@@ -87,7 +89,7 @@ export default class Animate extends React.Component {
                                     // stiffness:200,
                                     duration: 200
                                 }
-                            )
+                            ),
                         ])
                     ]).start();
                 }}>

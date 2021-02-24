@@ -1,5 +1,5 @@
 import React, { Component, useRef } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Animated, Dimensions } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { widthToDp, heightToDp } from '../../utils/responsiveUtils';
 import {
@@ -9,7 +9,7 @@ import {
     watch4,
     watch5
 } from '../images'
-
+const { width, height } = Dimensions.get('screen');
 
 const data = [
     {
@@ -40,15 +40,15 @@ const data = [
 export function RenderProduct(props) {
     let Width = props.width ? props.width : widthToDp(40);
     let imgRadius = props.imageRadius ? props.imageRadius : 100;
-    let sclX = props.scrollX ? props.scaleX : 1;
-    let sclY = props.scrollY ? props.scaleY : 1
+    let sclX = props.scrollX ? props.scalleX : 1;
+    let sclY = props.scrollY ? props.scalleY : 1
     return (
         <View style={{
             ...styles.container,
             transform: [
                 { scaleX: sclX },
                 { scaleY: sclY },
-                // { scale: props.scale }
+                // { scale: props.scalleX }
             ]
         }}>
             <View style={{ ...styles.prodView, width: Width }}>
@@ -67,7 +67,8 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
 
-        // this.scrollX = new Animated.Value(0);
+        this.scrollX = new Animated.Value(0);
+        console.log(this.scrollX)
     }
     render() {
         return (
@@ -83,7 +84,7 @@ export default class Home extends Component {
                 data={data}
                 keyExtractor={(item) => item.id}
                 horizontal={true}
-                // pagingEnabled={true}
+                pagingEnabled={true}
                 renderItem={({ item, index }) => {
                     return (
                         <RenderProduct name={item.name} desc={item.desc} price={431} img={item.image} />
@@ -109,8 +110,8 @@ export default class Home extends Component {
             //         const inputRange = [
             //             -1,
             //             0,
-            //             18+ index,
-            //             18+ index + 2
+            //             width+ index,
+            //             width+ index + 2
             //         ]
 
             //         const scale = this.scrollX.interpolate(
@@ -123,7 +124,7 @@ export default class Home extends Component {
             //         // console.log(scale)
             //         return (
             //             <RenderProduct name={item.name} desc={item.desc} price={431} img={item.image}
-            //                 scaleX={scale} scaleY={scale} scale={1} />
+            //                 scalleX={scale} scalleY={scale} scale={1} />
             //         )
             //     }}
 
