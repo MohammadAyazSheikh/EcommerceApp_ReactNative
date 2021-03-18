@@ -40,15 +40,16 @@ const data = [
 export function RenderProduct(props) {
     let Width = props.width ? props.width : widthToDp(40);
     let imgRadius = props.imageRadius ? props.imageRadius : 100;
-    let sclX = props.scrollX ? props.scalleX : 1;
-    let sclY = props.scrollY ? props.scalleY : 1
+    // let sclX = props.scrollX ? props.scalleX : 1;
+    // let sclY = props.scrollY ? props.scalleY : 1
     return (
-        <View style={{
+        <Animated.View style={{
             ...styles.container,
+            opacity: props.scale,
             transform: [
-                { scaleX: sclX },
-                { scaleY: sclY },
-                // { scale: props.scalleX }
+                // { scaleX: sclX },
+                // { scaleY: sclY },
+                { scale: props.scale || 1 }
             ]
         }}>
             <View style={{ ...styles.prodView, width: Width }}>
@@ -58,7 +59,7 @@ export function RenderProduct(props) {
                 <Text style={styles.txtProdDesc}>{props.desc}</Text>
                 <Text style={styles.txtProdPrice}>$ {props.price}</Text>
             </View>
-        </View>
+        </Animated.View>
     );
 }
 
@@ -68,7 +69,9 @@ export default class Home extends Component {
         super(props);
 
         this.scrollX = new Animated.Value(0);
-        console.log(this.scrollX)
+        console.log(widthToDp(40))
+
+
     }
     render() {
         return (
@@ -80,55 +83,55 @@ export default class Home extends Component {
             //     <RenderProduct name='Oppo Watch' desc='Series 2 . Black' price={431} img={watch5} />
             // </ScrollView>
 
-            <Animated.FlatList
-                data={data}
-                keyExtractor={(item) => item.id}
-                horizontal={true}
-                pagingEnabled={true}
-                renderItem={({ item, index }) => {
-                    return (
-                        <RenderProduct name={item.name} desc={item.desc} price={431} img={item.image} />
-                    )
-                }}
-
-            />
             // <Animated.FlatList
             //     data={data}
             //     keyExtractor={(item) => item.id}
             //     horizontal={true}
-            //     onScroll={
-
-            //         Animated.event(
-            //             [{ nativeEvent: { contentOffset: { x: this.scrollX } } }],
-            //             { useNativeDriver: true }
-            //         )
-            //     }
-
+            //     pagingEnabled={true}
             //     renderItem={({ item, index }) => {
-
-
-            //         const inputRange = [
-            //             -1,
-            //             0,
-            //             width+ index,
-            //             width+ index + 2
-            //         ]
-
-            //         const scale = this.scrollX.interpolate(
-            //             {
-            //                 inputRange,
-            //                 outputRange: [1, 1, 1, 0]
-            //             }
-            //         )
-            //         // console.log("-------------------")
-            //         // console.log(scale)
             //         return (
-            //             <RenderProduct name={item.name} desc={item.desc} price={431} img={item.image}
-            //                 scalleX={scale} scalleY={scale} scale={1} />
+            //             <RenderProduct name={item.name} desc={item.desc} price={431} img={item.image} />
             //         )
             //     }}
 
             // />
+            <Animated.FlatList
+                data={data}
+                keyExtractor={(item) => item.id}
+                horizontal={true}
+                onScroll={
+
+                    Animated.event(
+                        [{ nativeEvent: { contentOffset: { x: this.scrollX } } }],
+                        { useNativeDriver: true }
+                    )
+                }
+
+                renderItem={({ item, index }) => {
+
+
+                    const inputRange = [
+                        -1,
+                        0,
+                        153.5 * index,
+                        153.5 * (index + 2)
+                    ]
+
+                    const scale = this.scrollX.interpolate(
+                        {
+                            inputRange,
+                            outputRange: [1, 1, 1, 0]
+                        }
+                    )
+                    // console.log("-------------------")
+                    // console.log(scale)
+                    return (
+                        <RenderProduct name={item.name} desc={item.desc} price={431} img={item.image}
+                            scale={scale} />
+                    )
+                }}
+
+            />
         );
     }
 }

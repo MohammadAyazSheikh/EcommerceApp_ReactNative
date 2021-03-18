@@ -10,22 +10,18 @@ export default class Animate extends React.Component {
         this.position = new Animated.ValueXY({ x: 1, y: 1 });
         this.fadeAnim = new Animated.Value(1);
 
-        this.intpScale = this.fadeAnim.interpolate({
-            inputRange: [0.1, 0.5, 1],
-            outputRange: [1, 2, 1],
+        this.intpColor = this.fadeAnim.interpolate({
+            inputRange: [1, 2, 3],
+            outputRange: ['red', 'yellow', 'green'],
         });
 
         this.intpRotate = this.fadeAnim.interpolate({
-            inputRange: [1,50],
-            outputRange: ['0deg', '360deg'],
+            inputRange: [1, 3],
+            outputRange: ['0deg', '180deg'],
             // extrapolate:'clamp'
         });
 
-        this.intpMove = this.fadeAnim.interpolate({
-            inputRange: [1,110],
-            outputRange: [1, 100],
-            // extrapolate:'clamp'
-        });
+
 
     }
 
@@ -40,12 +36,14 @@ export default class Animate extends React.Component {
                     style={{
                         width: 30,
                         height: 30,
-                        backgroundColor: 'red',
+                        backgroundColor: 'red',//this.intpColor,
                         transform: [
                             // { scaleX: this.intpScale },
                             // { scaleY: this.position.y },
-                            { rotate: this.intpRotate },
-                            { translateY: this.intpMove },
+                            // { perspective: 200 },
+                            // { rotate: this.intpRotate },
+                            { rotateY: this.intpRotate },
+                            // {scale:this.fadeAnim}
                         ]
                     }}
                 >
@@ -55,10 +53,10 @@ export default class Animate extends React.Component {
                         this.fadeAnim,
                         {
                             // toValue: { x: 5, y: 5 },
-                            toValue: 360,
+                            toValue: 3,
                             // stiffness: 300,
                             useNativeDriver: true,
-                            duration: 5000
+                            duration: 1000
                         }
                     ).start();
 

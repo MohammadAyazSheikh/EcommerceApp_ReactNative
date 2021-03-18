@@ -149,7 +149,7 @@ export default function Anim() {
                                 alignItems: 'center',
                                 backgroundColor: 'red',
                                 margin: 10,
-                                opacity:  opac ,
+                                opacity: opac,
 
                                 transform: [
                                     {
@@ -166,8 +166,8 @@ export default function Anim() {
                                             // resizeMode: 'contain'
                                         }
                                     } />
-                                {/* </View> */}
-                                {/* <View style={{ flex: 0.3 }}>
+
+                                <View style={{ flex: 0.3 }}>
                                     <Text
                                         style={{ fontWeight: 'bold', fontSize: 11, color: 'white' }}
                                     >
@@ -176,7 +176,7 @@ export default function Anim() {
                                     <Text
                                         style={{ fontWeight: '300', fontSize: 11, color: 'white' }}
                                     >{item.description}</Text>
-                                </View> */}
+                                </View>
                             </Animated.View>
                         );
                     }

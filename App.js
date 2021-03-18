@@ -5,13 +5,19 @@ import Main from './source/components/mainComponent';
 import Animate from './source/components/animationComponent';
 import Anim from './source/components/anim2Component';
 import Carousel from './source/components/carouselComponent';
+import Schedule from './source/components/scheduleComponent';
+import AwesomeAnim from './source/components/awesomeAnimComponent';
+import LogInSport from './source/components/sportLogInComponent';
 
 export default function App() {
 
   return (
-    <Anim />
+    // <Anim />
     // <Carousel/>
-    // <Animate/>
+    // <Animate />
+    // <Schedule />
+    // <AwesomeAnim/>
+    <LogInSport />
     // <Main />
   );
 }
